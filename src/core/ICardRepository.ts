@@ -1,4 +1,4 @@
-import { Card } from "./Card"
+import { Card } from "./core/Card"
 
 export interface ICardRepository {
   findById(id: string): Promise<Card>

@@ -1,4 +1,4 @@
-import { Account } from "./Account"
+import { Account } from "./core/Account"
 
 export interface IAccountRepository {
   findById(id: string): Promise<Account>
