@@ -1,11 +1,14 @@
 import { ATMMachine } from "./ATMMachine"
-import { IAccountRepository } from "./IAccountRepository"
-import { ICardRepository } from "./ICardRepository"
-import { IDateService } from "./IDateService"
+import { IAccountRepository } from "./ports/IAccountRepository"
+import { ICardRepository } from "./ports/ICardRepository"
+import { IDateService } from "./ports/IDateService"
 import { WithdrawCashRequest } from "./WithdrawCashRequest"
 import { WithdrawCashResponse } from "./WithdrawCashResponse"
+import { IUseCase } from "../shared/IUseCase"
 
-export class WithdrawCashUseCase {
+export class WithdrawCashUseCase
+  implements IUseCase<WithdrawCashRequest, WithdrawCashResponse>
+{
   public constructor(
     private readonly _accountRepository: IAccountRepository,
     private readonly _cardRepository: ICardRepository,
