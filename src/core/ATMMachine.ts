@@ -1,7 +1,14 @@
 export class ATMMachine {
   private static _instance: ATMMachine
+  private _cash: number
 
-  private constructor(public readonly cash: number) {}
+  public get cash(): number {
+    return this._cash
+  }
+
+  private constructor(cash: number) {
+    this._cash = cash
+  }
 
   public static getInstance(): ATMMachine {
     if (!this._instance) {
@@ -9,5 +16,9 @@ export class ATMMachine {
     }
 
     return this._instance
+  }
+
+  public setCash(cash: number): void {
+    this._cash = cash
   }
 }

@@ -22,7 +22,7 @@ describe("WebApi integration with express", () => {
   describe("endpoints", () => {
     test("Endpoint is reachable and matches the response contract", async () => {
       const request = new WithdrawCashRequest("cardId", 50)
-      const response = new WithdrawCashResponse(100)
+      const response = new WithdrawCashResponse(100, 50)
       mockedUseCase.execute.mockResolvedValue(response)
 
       const result = await api.post("/withdraw").send(request)
@@ -32,7 +32,7 @@ describe("WebApi integration with express", () => {
     })
 
     test("throws an exception when the request body is invalid", async () => {
-      const response = new WithdrawCashResponse(100)
+      const response = new WithdrawCashResponse(100, 50)
       mockedUseCase.execute.mockResolvedValue(response)
 
       const result = await api.post("/withdraw")

@@ -12,7 +12,7 @@ export class WithdrawCashUseCase
   public constructor(
     private readonly _accountRepository: IAccountRepository,
     private readonly _cardRepository: ICardRepository,
-    private readonly _mockedDateService: IDateService
+    private readonly _dateService: IDateService
   ) {}
 
   public async execute(
@@ -20,7 +20,7 @@ export class WithdrawCashUseCase
   ): Promise<WithdrawCashResponse> {
     const atm = ATMMachine.getInstance()
     const card = await this._cardRepository.findById(request.cardId)
-    const today = this._mockedDateService.getTodaysDate()
+    const today = this._dateService.getTodaysDate()
 
     if (atm.cash - request.amount < 0) {
       throw new Error("machine does not have enough funds")
@@ -36,6 +36,6 @@ export class WithdrawCashUseCase
 
     await this._accountRepository.save(account)
 
-    return new WithdrawCashResponse(request.amount)
+    return new WithdrawCashResponse(request.amount, account.balance)
   }
 }
