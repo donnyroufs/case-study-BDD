@@ -22,4 +22,16 @@ describe("WithdrawCashController", () => {
 
     expect(mockedResponse.json).toHaveBeenCalled()
   })
+
+  test("returns an error object when something went wrong", async () => {
+    const error = new Error("You did something that upset the system")
+    mockedUseCase.execute.mockRejectedValue(error)
+    const sut = new WithdrawCashController(mockedUseCase)
+    const dto = new WithdrawCashRequest("cardId", 20)
+    await sut.handle({ body: dto } as any, mockedResponse)
+
+    expect(mockedResponse.json).toHaveBeenCalledWith({
+      message: error.message,
+    })
+  })
 })

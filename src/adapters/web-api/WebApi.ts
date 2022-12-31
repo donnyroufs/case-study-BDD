@@ -1,7 +1,7 @@
 import { WithdrawCashUseCase } from "../../core"
 import { WithdrawCashController } from "./controllers/WithdrawCashController"
 import { Server } from "./Server"
-import { WithdrawCashRequestMiddleware } from "./controllers/WithdrawCashRequestMiddleware"
+import { WithdrawCashRequestMiddleware } from "./middlewares/WithdrawCashRequestMiddleware"
 
 export class WebApi extends Server {
   public constructor(
