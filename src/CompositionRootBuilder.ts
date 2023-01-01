@@ -31,7 +31,7 @@ export class CompositionRootBuilder {
     return this
   }
 
-  public build(): ICompositionRoot {
+  public async build(): Promise<ICompositionRoot> {
     const accountRepository = new InMemoryAccountRepositoryImpl(this._accounts)
     const cardRepository = new InMemoryCardRepositoryImpl(this._cards)
     const dateService = new DateServiceImpl()

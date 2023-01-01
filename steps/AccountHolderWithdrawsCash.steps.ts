@@ -44,7 +44,7 @@ defineFeature(feature, (test) => {
         .setUserId(accountId)
         .build()
 
-      deps = compositionRootBuilder.addCard(card).build()
+      deps = await compositionRootBuilder.addCard(card).build()
       webApi = new WebApi(deps.withdrawCashUseCase)
       await webApi.start()
     })

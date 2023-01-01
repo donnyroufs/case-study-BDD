@@ -10,12 +10,12 @@ export async function bootstrap(): Promise<void> {
     .setUserId(account.id)
     .build()
 
-  const dependencies = new CompositionRootBuilder()
+  const root = await new CompositionRootBuilder()
     .addAccount(account)
     .addCard(card)
     .build()
 
-  const api = new WebApi(dependencies.withdrawCashUseCase)
+  const api = new WebApi(root.withdrawCashUseCase)
 
   await api.start()
 }
