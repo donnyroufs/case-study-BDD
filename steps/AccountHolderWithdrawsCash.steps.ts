@@ -37,6 +37,7 @@ defineFeature(feature, (test) => {
 
       compositionRootBuilder.addAccount(account)
     })
+
     and("the card is valid", async () => {
       const card = new Card.Builder()
         .setId(cardId)
