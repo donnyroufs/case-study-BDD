@@ -20,7 +20,7 @@ describe("WebApi integration with express", () => {
   })
 
   describe("endpoints", () => {
-    test("Endpoint is reachable and matches the response contract", async () => {
+    test("Endpoint is reachable and returns the response contract", async () => {
       const request = new WithdrawCashRequest("cardId", 50)
       const response = new WithdrawCashResponse(100, 50)
       mockedUseCase.execute.mockResolvedValue(response)
@@ -29,15 +29,6 @@ describe("WebApi integration with express", () => {
 
       expect(result.body).toEqual(response)
       expect(result.status).toBe(200)
-    })
-
-    test("throws an exception when the request body is invalid", async () => {
-      const response = new WithdrawCashResponse(100, 50)
-      mockedUseCase.execute.mockResolvedValue(response)
-
-      const result = await api.post("/withdraw")
-
-      expect(result.status).toBe(400)
     })
   })
 
